@@ -1,0 +1,599 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "jwt-powered-api",
+    "description": "A simple jwt-powered api to demonstrate openapi 3.1 functionality and features on authentication",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/v1/public/user/": {
+      "post": {
+        "summary": "post-v1-public-user-register",
+        "description": "create a new user",
+        "operationId": "post-v1-public-user-register",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentioalRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceIDResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/public/user/login": {
+      "post": {
+        "summary": "post-user",
+        "description": "login user",
+        "operationId": "post-user",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentioalRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v1/authorized/user/{id}": {
+      "get": {
+        "summary": "get-v1-authorized-user-id",
+        "description": "get user with id",
+        "operationId": "get-v1-authorized-user-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "jwt-token": []
+          }
+        ]
+      }
+    },
+    "/v1/authorized/check": {
+      "get": {
+        "summary": "get-v1-authorized-check",
+        "description": "check user is authorized",
+        "operationId": "get-v1-authorized-check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceIDResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "jwt-token": []
+          }
+        ]
+      }
+    },
+    "/v1/public/user/{id}/logout": {
+      "post": {
+        "summary": "post-v1-public-user-logout",
+        "description": "",
+        "operationId": "post-v1-public-user-logout",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {},
+            "content": {}
+          },
+          "400": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/v1/public/user/{id}/refresh": {
+      "post": {
+        "summary": "post-v1-public-user-refresh",
+        "description": "",
+        "operationId": "post-v1-public-user-refresh",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRequest"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Example response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse1"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "required": [
+          "id",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "CredentioalRequest": {
+        "title": "CredentioalRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 32,
+            "minLength": 8,
+            "type": "string",
+            "format": "password"
+          }
+        }
+      },
+      "ErrorResponse1": {
+        "title": "ErrorResponse1",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "JwtTokenResponse": {
+        "title": "JwtTokenResponse",
+        "required": [
+          "jwt_token",
+          "jwt_expires_at"
+        ],
+        "type": "object",
+        "properties": {
+          "jwt_token": {
+            "oneOf": [
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "jwt_expires_at": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "LoginTokenResponse": {
+        "title": "LoginTokenResponse",
+        "type": "object",
+        "properties": {
+          "jwt_token": {
+            "type": "string"
+          },
+          "jwt_expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "refresh_token": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "refresh_expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user_id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "jwt_token",
+          "jwt_expires_at",
+          "refresh_token",
+          "refresh_expires_at",
+          "user_id"
+        ]
+      },
+      "ResourceIDResponse": {
+        "title": "ResourceIDResponse",
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "TokenRequest": {
+        "title": "TokenRequest",
+        "required": [
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwt-token": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": []
+}

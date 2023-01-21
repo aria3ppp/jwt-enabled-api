@@ -1,0 +1,13 @@
+wipe = true
+tag = ["db"] # github.com/blockloop/scan.Row(s)Strict needs a `db` tag 
+tag-ignore = ["users.password_hash"]
+
+[psql]
+blacklist = ["schema_migrations"]
+
+dbname = "jwt-api"
+host   = "localhost"
+port = 5432
+user = "jwt-api"
+pass = "jwt-api"
+sslmode = "disable"

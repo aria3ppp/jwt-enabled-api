@@ -1,0 +1,9 @@
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(40) UNIQUE NOT NULL,
+    password_hash VARCHAR(72) NOT NULL
+);
+
+COMMIT;

@@ -1,0 +1,12 @@
+postgres:
+    db: ""
+    user: ""
+    password: ""
+    host: "postgres"
+    port: 5432
+
+auth:
+    ecdsa_signing_key_base64: ""
+    expire_in_secs:
+        jwt: 600 # 10 minutes
+        refresh: 2592000 # 30 days
