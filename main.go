@@ -60,11 +60,9 @@ func main() {
 	repo := repo.NewRepository(db)
 	app := app.NewApplication(repo, auth, hasher)
 
-	router := echo.New()
-
 	server := server.NewServer(
 		app,
-		router,
+		echo.New(),
 		func(ctx echo.Context, s string) (any, error) { return auth.ParseJwtToken(s) },
 		echo.MustSubFS(openapiFS, "openapi"),
 	)
