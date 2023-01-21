@@ -5,12 +5,14 @@ import (
 	"fmt"
 	"io/fs"
 	"net/http"
+	"time"
 
 	"jwt-enabled-api/internal/app"
 	"jwt-enabled-api/internal/auth"
 
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 type Server struct {
@@ -42,6 +44,15 @@ func (s *Server) GetHandler() http.Handler {
 }
 
 func (s *Server) setHandlers() {
+	// timeout requests
+	s.router.Use(
+		middleware.TimeoutWithConfig(
+			middleware.TimeoutConfig{
+				Timeout: 10 * time.Second,
+			},
+		),
+	)
+
 	v1 := s.router.Group("/v1")
 
 	////// test routes /////////////////////////////////////////////////////////
