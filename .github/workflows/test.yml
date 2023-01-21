@@ -27,7 +27,7 @@ jobs:
       run: go test -covermode=count -coverprofile=cover.out ./internal/auth ./internal/dto
 
     - name: Upload coverage to Codecov
-      uses: codecov@codecov-action@v3
+      uses: codecov/codecov-action@v3
       with:
         file: cover.out
 
