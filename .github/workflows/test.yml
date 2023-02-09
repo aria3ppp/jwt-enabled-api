@@ -26,10 +26,7 @@ jobs:
     - name: Test
       run: go test -covermode=count -coverprofile=cover.out ./internal/auth ./internal/dto
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+    - uses: shogo82148/actions-goveralls@v1
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: cover.out
-        fail_ci_if_error: true
+        path-to-profile: cover.out
 
